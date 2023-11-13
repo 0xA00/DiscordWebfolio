@@ -1,0 +1,199 @@
+<!-- FILEPATH: /home/lengthrequired/WebstormProjects/discordwebfolio/index.html -->
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>My Discord Tag</title>
+        <style>
+@font-face {
+    font-family: 'GeistMono';
+    src: url(./GeistMono-Regular.otf) format('opentype');
+}
+
+body {
+    background-size: cover;
+    background-color: #161616;
+}
+
+
+            .discord-tag {
+                
+                background: rgba( 255, 255, 255, 0.25 );
+                backdrop-filter: blur( 4px );
+                -webkit-backdrop-filter: blur( 4px );
+                border-radius: 10px;
+                border: 1px solid rgba( 255, 255, 255, 0.18 );
+                box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        
+                font-family: 'GeistMono', Tahoma, Geneva, Verdana, sans-serif;
+                font-size: 20px;
+                font-weight: 500;
+                color: #ffffff;
+                text-align: center;
+                padding: 10px;
+                width: fit-content*2;
+                height: fit-content*2;
+                margin: 0 auto;
+                margin-top: 50px;
+
+                
+
+
+                /* center it inside the window*/
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+
+
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: center;
+
+                cursor: pointer;
+
+
+                div{
+                    margin-left: 10px;
+                    /*  make it so that the text is on the same line as the image  but slightly lower */
+                    padding-right: 2vh;
+                    /*lower it slightly */
+                    padding-top: 4vh;
+                    
+
+                
+                }
+
+                img{
+                    /*make it big */
+                    width: 256px;
+                    padding: 20px;
+                    /* make it a circle */
+
+                }
+
+
+            }
+
+            #username {
+                color: #ffffff;
+                /* make it large */
+                font-size: 40px;
+            }
+
+            #discriminator {
+                color: #ffffff;
+                
+                font-size: 20px;
+                
+                font-style: italic;
+            }
+
+            @-webkit-keyframes pulse {
+                0% {
+                    -webkit-box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4);
+                }
+                70% {
+                    -webkit-box-shadow: 0 0 0 10px rgba(255, 255, 255, 0);
+                }
+                100% {
+                    -webkit-box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+                }
+            }
+
+            #title{
+                color: #ffffff;
+                font-family: 'GeistMono', Tahoma, Geneva, Verdana, sans-serif;
+                font-size: 50px;
+                font-weight: 500;
+                text-align: center;
+                padding: 10px;
+                width: fit-content*2;
+                height: fit-content*2;
+                margin: 0 auto;
+                margin-top: 50px;
+                /* center it inside the window about the discord tag */
+                position: absolute;
+                top: 30%;
+                left: 50%;
+                transform: translate(-50%, -100%);
+            }
+
+
+
+
+            
+
+
+        </style>
+    </head>
+    <body>
+        <h1 id="title" >My discord tag</h1>
+        
+        
+        <div class="discord-tag">
+            <img src="https://cdn.discordapp.com/avatars/298221448642953217/a01ba18bd517dd5c193ed52b9cf59b5b.webp?size=256" alt="Avatar" style="border-radius:50%;">
+           <div>
+            <span id="username">0Xa0</span> <span id="discriminator">0xa0</span>
+        </div>
+            
+
+        </div>
+    </body>
+</html>
+
+<script>
+    //make an animation so it look like the title is being written by a | 
+    var title = document.getElementById("title");
+    var text = title.innerHTML;
+    title.innerHTML = "";
+    var i = 0;
+    var speed = 50;
+    function typeWriter() {
+        if (i < text.length) {
+            title.innerHTML += text.charAt(i);
+            i++;
+            setTimeout(typeWriter, speed);
+        }
+    }
+    typeWriter();
+
+    /*make it so if you click on the discord tag it will copy the discriminator to the clipboard and say it by making a small text pop up that say 'discord username copied on clipboard' where you cursor are and make it dissapeear 3 seconds after, and only one of them can exist*/
+    var discordtag = document.getElementsByClassName("discord-tag")[0];
+    discordtag.addEventListener("click", function() {
+        var discriminator = document.getElementById("discriminator").innerHTML;
+        navigator.clipboard.writeText(discriminator);
+        var text = document.createElement("p");
+        text.innerHTML = "copied on clipboard";
+        text.style.position = "absolute";
+        text.style.top = (event.clientY -60) + "px";
+        text.style.left = (event.clientX -25) + "px";
+        text.style.color = "#ffffff";
+        text.style.fontFamily = "'GeistMono', Tahoma, Geneva, Verdana, sans-serif";
+        text.style.fontSize = "20px";
+        text.style.fontWeight = "500";
+        text.style.textAlign = "center";
+        text.style.padding = "10px";
+        text.style.width = "fit-content*2";
+        text.style.height = "fit-content*2";
+        text.style.margin = "0 auto";
+        text.style.marginTop = "50px";
+        //make it so the text is on a green background
+        text.style.backgroundColor = "#43b581";
+        text.style.borderRadius = "10px";
+        text.style.border = "1px solid rgba( 255, 255, 255, 0.18 )";
+        text.style.boxShadow = "0 8px 32px 0 rgba(0, 0, 0, 0.37)";
+        //if the text is already there, teleport it to the cursor
+        if (document.getElementsByTagName("p").length > 0) {
+            document.getElementsByTagName("p")[0].remove();
+        }
+        document.body.appendChild(text);
+
+        setTimeout(function() {
+            text.remove();
+        }, 3000);
+    });
+    
+    
+</script>
