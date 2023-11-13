@@ -167,8 +167,6 @@ body {
         var text = document.createElement("p");
         text.innerHTML = "copied on clipboard";
         text.style.position = "absolute";
-        text.style.top = (event.clientY -60) + "px";
-        text.style.left = (event.clientX -25) + "px";
         text.style.color = "#ffffff";
         text.style.fontFamily = "'GeistMono', Tahoma, Geneva, Verdana, sans-serif";
         text.style.fontSize = "20px";
@@ -179,19 +177,35 @@ body {
         text.style.height = "fit-content*2";
         text.style.margin = "0 auto";
         text.style.marginTop = "50px";
-        //make it so the text is on a green background
+
         text.style.backgroundColor = "#43b581";
         text.style.borderRadius = "10px";
         text.style.border = "1px solid rgba( 255, 255, 255, 0.18 )";
         text.style.boxShadow = "0 8px 32px 0 rgba(0, 0, 0, 0.37)";
-        //if the text is already there, teleport it to the cursor
-        if (document.getElementsByTagName("p").length > 0) {
-            document.getElementsByTagName("p")[0].remove();
-        }
+        //create an animation so the text appear from the bottom with a fade in and a transition
+        text.style.animation = "fadein 1s";
+        text.style.transition = "all 1s";
+        text.style.bottom = "50px";
+        text.style.left = "50%";
+        text.style.transform = "translate(-50%, -50%)";
+
+        
+        var style = document.createElement("style");
+        style.innerHTML = "@keyframes fadein {from {bottom: 0; opacity: 0;} to {bottom: 50px; opacity: 1;}}";
+        document.head.appendChild(style);
+        
+        var style = document.createElement("style");
+        style.innerHTML = "@keyframes fadeout {from {bottom: 50px; opacity: 1;} to {bottom: 0; opacity: 0;}}";
+        document.head.appendChild(style);
         document.body.appendChild(text);
 
         setTimeout(function() {
-            text.remove();
+            //make it fade out
+            text.style.animation = "fadeout 1s";
+            setTimeout(function() {
+                //remove it
+                text.remove();
+            }, 1000);
         }, 3000);
     });
     
