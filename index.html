@@ -39,11 +39,7 @@ body {
                 
 
 
-                /* center it inside the window*/
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
+               
 
 
                 display: flex;
@@ -103,13 +99,16 @@ body {
                 height: fit-content*2;
                 margin: 0 auto;
                 margin-top: 50px;
-                position: absolute;
-                top: 30%;
-                left: 50%;
-                transform: translate(-50%, -100%);
+                
             }
 
-
+            #evrything{
+                position:absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                
+            }
 
 
             
@@ -118,17 +117,21 @@ body {
         </style>
     </head>
     <body>
-        <h1 id="title" >My discord tag</h1>
+
+
+        <div id="evrything">
+            <h1 id="title" >My discord tag</h1>
         
         
-        <div class="discord-tag">
-            <img src="https://cdn.discordapp.com/avatars/298221448642953217/a01ba18bd517dd5c193ed52b9cf59b5b.webp?size=256" alt="Avatar" style="border-radius:50%;">
-           <div>
-            <span id="username">0Xa0</span> <span id="discriminator">0xa0</span>
+            <div class="discord-tag">
+                <img src="https://cdn.discordapp.com/avatars/298221448642953217/a01ba18bd517dd5c193ed52b9cf59b5b.webp?size=256" alt="Avatar" style="border-radius:50%;">
+            <div>
+                <span id="username">0Xa0</span> <span id="discriminator">0xa0</span>
+            </div>
+
         </div>
             
 
-        </div>
     </body>
 </html>
 
